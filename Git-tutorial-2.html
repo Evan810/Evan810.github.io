@@ -1,0 +1,235 @@
+<!-- build time:Fri Nov 09 2018 20:05:21 GMT+0800 (GMT+08:00) --><!DOCTYPE html><html class="theme-next gemini use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#222"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css"><link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png?v=6.5.0"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.5.0"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.5.0"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Gemini",version:"6.5.0",sidebar:{position:"left",display:"post",offset:12,b2t:!1,scrollpercent:!1,onmobile:!1},fancybox:!1,fastclick:!1,lazyload:!1,tabs:!0,motion:{enable:!0,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><meta name="description" content="版本回退现在，你已经学会了修改文件，然后把修改提交到Git版本库，现在，再练习一次，修改readme.txt文件如下：Git is a distributed version control system. Git is free software distributed under the GPL. 然后尝试提交：$ git add readme.txt $ git commit -m &amp;quo"><meta name="keywords" content="Git教程"><meta property="og:type" content="article"><meta property="og:title" content="Git教程(二)"><meta property="og:url" content="https://www.zelvan.net/Git-tutorial-2.html"><meta property="og:site_name" content="薄荷柠檬的博客"><meta property="og:description" content="版本回退现在，你已经学会了修改文件，然后把修改提交到Git版本库，现在，再练习一次，修改readme.txt文件如下：Git is a distributed version control system. Git is free software distributed under the GPL. 然后尝试提交：$ git add readme.txt $ git commit -m &amp;quo"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://www.zelvan.net/images/2018/git005.jpg"><meta property="og:image" content="https://www.zelvan.net/images/2018/git006.jpg"><meta property="og:image" content="https://www.zelvan.net/images/2018/git007.jpg"><meta property="og:updated_time" content="2018-11-09T09:19:22.437Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Git教程(二)"><meta name="twitter:description" content="版本回退现在，你已经学会了修改文件，然后把修改提交到Git版本库，现在，再练习一次，修改readme.txt文件如下：Git is a distributed version control system. Git is free software distributed under the GPL. 然后尝试提交：$ git add readme.txt $ git commit -m &amp;quo"><meta name="twitter:image" content="https://www.zelvan.net/images/2018/git005.jpg"><link rel="alternate" href="/rss2.xml" title="薄荷柠檬的博客" type="application/atom+xml"><link rel="canonical" href="https://www.zelvan.net/Git-tutorial-2.html"><script type="text/javascript" id="page.configurations">CONFIG.page={sidebar:""}</script><title>Git教程(二) | 薄荷柠檬的博客</title><noscript><style type="text/css">.sidebar-inner,.use-motion .brand,.use-motion .collection-title,.use-motion .comments,.use-motion .menu-item,.use-motion .motion-element,.use-motion .pagination,.use-motion .post-block,.use-motion .post-body,.use-motion .post-header{opacity:initial}.use-motion .logo,.use-motion .site-subtitle,.use-motion .site-title{opacity:initial;top:initial}</style></noscript></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">薄荷柠檬的博客</span> <span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle">Evan的空中楼阁</p></div><div class="site-nav-toggle"><button aria-label="切换导航栏"><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益 404</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class="site-search"><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i> </span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"><input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="https://www.zelvan.net/Git-tutorial-2.html"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="Evan"><meta itemprop="description" content="一些平时学习笔记以及搜集到的好的文章"><meta itemprop="image" content="/images/avatar.gif"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="薄荷柠檬的博客"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Git教程(二)</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建时间：2018-11-09 15:44:46 / 修改时间：17:19:22" itemprop="dateCreated datePublished" datetime="2018-11-09T15:44:46+08:00">2018-11-09</time> </span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/软件·服务器/" itemprop="url" rel="index"><span itemprop="name">软件·服务器</span></a></span> ， <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/软件·服务器/Git教程/" itemprop="url" rel="index"><span itemprop="name">Git教程</span></a></span> </span><span id="/Git-tutorial-2.html" class="leancloud_visitors" data-flag-title="Git教程(二)"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-eye"></i> </span><span class="post-meta-item-text">热度：</span> <span class="leancloud-visitors-count"></span> <span>℃</span></span><div class="post-symbolscount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i> </span><span class="post-meta-item-text">字数统计：</span> <span title="字数统计">9.6k</span> <span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i> </span><span class="post-meta-item-text">阅读时长 &asymp;</span> <span title="阅读时长">9 分钟</span></div></div></header><div class="post-body" itemprop="articleBody"><h3 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h3><p>现在，你已经学会了修改文件，然后把修改提交到Git版本库，现在，再练习一次，修改readme.txt文件如下：</p><pre><code>Git is a distributed version control system.
+Git is free software distributed under the GPL.
+</code></pre><p>然后尝试提交：</p><pre><code>$ git add readme.txt
+$ git commit -m &quot;append GPL&quot;
+[master 1094adb] append GPL
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</code></pre><p>像这样，你不断对文件进行修改，然后不断提交修改到版本库里，就好比玩RPG游戏时，每通过一关就会自动把游戏状态存盘，如果某一关没过去，你还可以选择读取前一关的状态。有些时候，在打Boss之前，你会手动存盘，以便万一打Boss失败了，可以从最近的地方重新开始。Git也是一样，每当你觉得文件修改到一定程度的时候，就可以“保存一个快照”，这个快照在Git中被称为commit。一旦你把文件改乱了，或者误删了文件，还可以从最近的一个commit恢复，然后继续工作，而不是把几个月的工作成果全部丢失。<br><a id="more"></a><br>现在，我们回顾一下readme.txt文件一共有几个版本被提交到Git仓库里了：</p><p>版本1：wrote a readme file</p><pre><code>Git is a version control system.
+Git is free software.
+</code></pre><p>版本2：add distributed</p><pre><code>Git is a distributed version control system.
+Git is free software.
+</code></pre><p>版本3：append GPL</p><pre><code>Git is a distributed version control system.
+Git is free software distributed under the GPL.
+</code></pre><p>当然了，在实际工作中，我们脑子里怎么可能记得一个几千行的文件每次都改了什么内容，不然要版本控制系统干什么。版本控制系统肯定有某个命令可以告诉我们历史记录，在Git中，我们用git log命令查看：</p><pre><code>$ git log
+commit 1094adb7b9b3807259d8cb349e7df1d4d6477073 (HEAD -&gt; master)
+Author: Michael Liao &lt;askxuefeng@gmail.com&gt;
+Date:   Fri May 18 21:06:15 2018 +0800
+
+    append GPL
+
+commit e475afc93c209a690c39c13a46716e8fa000c366
+Author: Michael Liao &lt;askxuefeng@gmail.com&gt;
+Date:   Fri May 18 21:03:36 2018 +0800
+
+    add distributed
+
+commit eaadf4e385e865d25c48e7ca9c8395c3f7dfaef0
+Author: Michael Liao &lt;askxuefeng@gmail.com&gt;
+Date:   Fri May 18 20:59:18 2018 +0800
+
+    wrote a readme file
+</code></pre><p>git log命令显示从最近到最远的提交日志，我们可以看到3次提交，最近的一次是append GPL，上一次是add distributed，最早的一次是wrote a readme file。</p><p>如果嫌输出信息太多，看得眼花缭乱的，可以试试加上–pretty=oneline参数：</p><pre><code>$ git log --pretty=oneline
+1094adb7b9b3807259d8cb349e7df1d4d6477073 (HEAD -&gt; master) append GPL
+e475afc93c209a690c39c13a46716e8fa000c366 add distributed
+eaadf4e385e865d25c48e7ca9c8395c3f7dfaef0 wrote a readme file
+</code></pre><p>需要友情提示的是，你看到的一大串类似1094adb…的是commit id（版本号），和SVN不一样，Git的commit id不是1，2，3……递增的数字，而是一个SHA1计算出来的一个非常大的数字，用十六进制表示，而且你看到的commit id和我的肯定不一样，以你自己的为准。为什么commit id需要用这么一大串数字表示呢？因为Git是分布式的版本控制系统，后面我们还要研究多人在同一个版本库里工作，如果大家都用1，2，3……作为版本号，那肯定就冲突了。</p><p>每提交一个新版本，实际上Git就会把它们自动串成一条时间线。如果使用可视化工具查看Git历史，就可以更清楚地看到提交历史的时间线：<br><img src="/images/2018/git005.jpg" alt=""><br>好了，现在我们启动时光穿梭机，准备把readme.txt回退到上一个版本，也就是add distributed的那个版本，怎么做呢？</p><p>首先，Git必须知道当前版本是哪个版本，在Git中，用HEAD表示当前版本，也就是最新的提交1094adb…（注意我的提交ID和你的肯定不一样），上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100。</p><p>现在，我们要把当前版本append GPL回退到上一个版本add distributed，就可以使用git reset命令：</p><pre><code>$ git reset --hard HEAD^
+HEAD is now at e475afc add distributed
+</code></pre><p>–hard参数有啥意义？这个后面再讲，现在你先放心使用。</p><p>看看readme.txt的内容是不是版本add distributed：</p><pre><code>$ cat readme.txt
+Git is a distributed version control system.
+Git is free software.
+</code></pre><p>果然被还原了。</p><p>还可以继续回退到上一个版本wrote a readme file，不过且慢，然我们用git log再看看现在版本库的状态：</p><pre><code>$ git log
+commit e475afc93c209a690c39c13a46716e8fa000c366 (HEAD -&gt; master)
+Author: Michael Liao &lt;askxuefeng@gmail.com&gt;
+Date:   Fri May 18 21:03:36 2018 +0800
+
+    add distributed
+
+commit eaadf4e385e865d25c48e7ca9c8395c3f7dfaef0
+Author: Michael Liao &lt;askxuefeng@gmail.com&gt;
+Date:   Fri May 18 20:59:18 2018 +0800
+
+    wrote a readme file
+</code></pre><p>最新的那个版本append GPL已经看不到了！好比你从21世纪坐时光穿梭机来到了19世纪，想再回去已经回不去了，肿么办？</p><p>办法其实还是有的，只要上面的命令行窗口还没有被关掉，你就可以顺着往上找啊找啊，找到那个append GPL的commit id是1094adb…，于是就可以指定回到未来的某个版本：</p><pre><code>$ git reset --hard 1094a
+HEAD is now at 83b0afe append GPL
+</code></pre><p>版本号没必要写全，前几位就可以了，Git会自动去找。当然也不能只写前一两位，因为Git可能会找到多个版本号，就无法确定是哪一个了。</p><p>再小心翼翼地看看readme.txt的内容：</p><pre><code>$ cat readme.txt
+Git is a distributed version control system.
+Git is free software distributed under the GPL.
+</code></pre><p>果然，我胡汉三又回来了。</p><p>Git的版本回退速度非常快，因为Git在内部有个指向当前版本的HEAD指针，当你回退版本的时候，Git仅仅是把HEAD从指向append GPL：<br><img src="/images/2018/git006.jpg" alt=""><br>改为指向add distributed：<br><img src="/images/2018/git007.jpg" alt=""><br>然后顺便把工作区的文件更新了。所以你让HEAD指向哪个版本号，你就把当前版本定位在哪。</p><p>现在，你回退到了某个版本，关掉了电脑，第二天早上就后悔了，想恢复到新版本怎么办？找不到新版本的commit id怎么办？</p><p>在Git中，总是有后悔药可以吃的。当你用$ git reset –hard HEAD^回退到add distributed版本时，再想恢复到append GPL，就必须找到append GPL的commit id。Git提供了一个命令git reflog用来记录你的每一次命令：</p><pre><code>$ git reflog
+e475afc HEAD@{1}: reset: moving to HEAD^
+1094adb (HEAD -&gt; master) HEAD@{2}: commit: append GPL
+e475afc HEAD@{3}: commit: add distributed
+eaadf4e HEAD@{4}: commit (initial): wrote a readme file
+</code></pre><p>终于舒了口气，从输出可知，append GPL的commit id是1094adb，现在，你又可以乘坐时光机回到未来了。</p><h3 id="管理修改"><a href="#管理修改" class="headerlink" title="管理修改"></a>管理修改</h3><p>你会问，什么是修改？比如你新增了一行，这就是一个修改，删除了一行，也是一个修改，更改了某些字符，也是一个修改，删了一些又加了一些，也是一个修改，甚至创建一个新文件，也算一个修改。</p><p>为什么说Git管理的是修改，而不是文件呢？我们还是做实验。第一步，对readme.txt做一个修改，比如加一行内容：</p><pre><code>$ cat readme.txt
+Git is a distributed version control system.
+Git is free software distributed under the GPL.
+Git has a mutable index called stage.
+Git tracks changes.
+</code></pre><p>然后，添加：</p><pre><code>$ git add readme.txt
+$ git status
+# On branch master
+# Changes to be committed:
+#   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+#
+#       modified:   readme.txt
+#
+</code></pre><p>然后，再修改readme.txt：</p><pre><code>$ cat readme.txt 
+Git is a distributed version control system.
+Git is free software distributed under the GPL.
+Git has a mutable index called stage.
+Git tracks changes of files.
+</code></pre><p>提交：</p><pre><code>$ git commit -m &quot;git tracks changes&quot;
+[master 519219b] git tracks changes
+ 1 file changed, 1 insertion(+)
+</code></pre><p>提交后，再看看状态：</p><pre><code>$ git status
+On branch master
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+
+    modified:   readme.txt
+
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+</code></pre><p>咦，怎么第二次的修改没有被提交？</p><p>别激动，我们回顾一下操作过程：</p><p>第一次修改 -&gt; git add -&gt; 第二次修改 -&gt; git commit</p><p>你看，我们前面讲了，Git管理的是修改，当你用git add命令后，在工作区的第一次修改被放入暂存区，准备提交，但是，在工作区的第二次修改并没有放入暂存区，所以，git commit只负责把暂存区的修改提交了，也就是第一次的修改被提交了，第二次的修改不会被提交。</p><p>提交后，用git diff HEAD – readme.txt命令可以查看工作区和版本库里面最新版本的区别：</p><pre><code>$ git diff HEAD -- readme.txt 
+diff --git a/readme.txt b/readme.txt
+index 76d770f..a9c5755 100644
+--- a/readme.txt
++++ b/readme.txt
+@@ -1,4 +1,4 @@
+ Git is a distributed version control system.
+ Git is free software distributed under the GPL.
+ Git has a mutable index called stage.
+-Git tracks changes.
++Git tracks changes of files.
+</code></pre><p>可见，第二次修改确实没有被提交。<br>那怎么提交第二次修改呢？你可以继续git add再git commit，也可以别着急提交第一次修改，先git add第二次修改，再git commit，就相当于把两次修改合并后一块提交了：</p><p>第一次修改 -&gt; git add -&gt; 第二次修改 -&gt; git add -&gt; git commit</p><p>好，现在，把第二次修改提交了，然后开始小结。</p><h3 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h3><p>自然，你是不会犯错的。不过现在是凌晨两点，你正在赶一份工作报告，你在readme.txt中添加了一行：</p><pre><code>$ cat readme.txt
+Git is a distributed version control system.
+Git is free software distributed under the GPL.
+Git has a mutable index called stage.
+Git tracks changes of files.
+My stupid boss still prefers SVN.
+</code></pre><p>在你准备提交前，一杯咖啡起了作用，你猛然发现了stupid boss可能会让你丢掉这个月的奖金！</p><p>既然错误发现得很及时，就可以很容易地纠正它。你可以删掉最后一行，手动把文件恢复到上一个版本的状态。如果用git status查看一下：</p><pre><code>$ git status
+On branch master
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+
+    modified:   readme.txt
+
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+</code></pre><p>你可以发现，Git会告诉你，git checkout – file可以丢弃工作区的修改：</p><pre><code>$ git checkout -- readme.txt
+</code></pre><p>命令git checkout – readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：</p><p>一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；</p><p>一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。</p><p>总之，就是让这个文件回到最近一次git commit或git add时的状态。</p><p>现在，看看readme.txt的文件内容：</p><pre><code>$ cat readme.txt
+Git is a distributed version control system.
+Git is free software distributed under the GPL.
+Git has a mutable index called stage.
+Git tracks changes of files.
+</code></pre><p>文件内容果然复原了。</p><p>git checkout – file命令中的–很重要，没有–，就变成了“切换到另一个分支”的命令，我们在后面的分支管理中会再次遇到git checkout命令</p><p>现在假定是凌晨3点，你不但写了一些胡话，还git add到暂存区了：</p><pre><code>$ cat readme.txt
+Git is a distributed version control system.
+Git is free software distributed under the GPL.
+Git has a mutable index called stage.
+Git tracks changes of files.
+My stupid boss still prefers SVN.
+
+$ git add readme.txt
+</code></pre><p>庆幸的是，在commit之前，你发现了这个问题。用git status查看一下，修改只是添加到了暂存区，还没有提交：</p><pre><code>$ git status
+On branch master
+Changes to be committed:
+  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+
+    modified:   readme.txt
+</code></pre><p>Git同样告诉我们，用命令git reset HEAD<file>可以把暂存区的修改撤销掉（unstage），重新放回工作区：</file></p><pre><code>$ git reset HEAD readme.txt
+Unstaged changes after reset:
+M    readme.txt
+</code></pre><p>git reset命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本。</p><p>再用git status查看一下，现在暂存区是干净的，工作区有修改：</p><pre><code>$ git status
+On branch master
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+
+    modified:   readme.txt
+</code></pre><p>还记得如何丢弃工作区的修改吗？</p><pre><code>$ git checkout -- readme.txt
+
+$ git status
+On branch master
+nothing to commit, working tree clean
+</code></pre><p>整个世界终于清静了！</p><p>现在，假设你不但改错了东西，还从暂存区提交到了版本库，怎么办呢？还记得版本回退一节吗？可以回退到上一个版本。不过，这是有条件的，就是你还没有把自己的本地版本库推送到远程。还记得Git是分布式版本控制系统吗？我们后面会讲到远程版本库，一旦你把stupid boss提交推送到远程版本库，你就真的惨了……</p><h3 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h3><p>在Git中，删除也是一个修改操作，我们实战一下，先添加一个新文件test.txt到Git并且提交：</p><pre><code>$ git add test.txt
+
+$ git commit -m &quot;add test.txt&quot;
+[master b84166e] add test.txt
+ 1 file changed, 1 insertion(+)
+ create mode 100644 test.txt
+</code></pre><p>一般情况下，你通常直接在文件管理器中把没用的文件删了，或者用rm命令删了：</p><pre><code>$ rm test.txt
+</code></pre><p>这个时候，Git知道你删除了文件，因此，工作区和版本库就不一致了，git status命令会立刻告诉你哪些文件被删除了：</p><pre><code>$ git status
+On branch master
+Changes not staged for commit:
+  (use &quot;git add/rm &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+
+    deleted:    test.txt
+
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+</code></pre><p>现在你有两个选择，一是确实要从版本库中删除该文件，那就用命令git rm删掉，并且git commit：</p><pre><code>$ git rm test.txt
+rm &apos;test.txt&apos;
+
+$ git commit -m &quot;remove test.txt&quot;
+[master d46f35e] remove test.txt
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 test.txt
+</code></pre><p>现在，文件就从版本库中被删除了。</p><p>小提示：先手动删除文件，然后使用git rm<file>和git add<file>效果是一样的。</file></file></p><p>另一种情况是删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本：</p><pre><code>$ git checkout -- test.txt
+</code></pre><p>git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。</p><p>本文转载自廖旭峰官网<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">Git教程</a></p></div><div><div><div style="text-align:center;color:#333;font-size:16px">-------------本文结束<i class="fa fa-linux"></i>感谢您的阅读-------------</div></div></div><footer class="post-footer"><div class="post-tags"><a href="/tags/Git教程/" rel="tag"><i class="fa fa-tag"></i> Git教程</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/Git-tutorial-1.html" rel="next" title="Git教程(一)"><i class="fa fa-chevron-left"></i> Git教程(一)</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/Git-tutorial-3.html" rel="prev" title="Git教程(三)">Git教程(三) <i class="fa fa-chevron-right"></i></a></div></div></footer></div></article></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview-wrap">站点概览</li></ul><section class="site-overview-wrap sidebar-panel"><div class="site-overview"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><p class="site-author-name" itemprop="name">Evan</p><p class="site-description motion-element" itemprop="description">一些平时学习笔记以及搜集到的好的文章</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">10</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">6</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">7</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="feed-link motion-element"><a href="/rss2.xml" rel="alternate"><i class="fa fa-rss"></i> RSS</a></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/Evan810" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a> </span><span class="links-of-author-item"><a href="mailto:zelvan@outlook.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a></span></div><div class="links-of-blogroll motion-element links-of-blogroll-blank"><div class="links-of-blogroll-title"><i class="fa fa-fw fa-link"></i> Links</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"><a href="http://theme-next.iissnan.com/" title="NEXT使用文档" target="_blank">NEXT使用文档</a></li><li class="links-of-blogroll-item"><a href="https://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a></li><li class="links-of-blogroll-item"><a href="http://www.runoob.com/" title="菜鸟教程" target="_blank">菜鸟教程</a></li></ul></div></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#版本回退"><span class="nav-text">版本回退</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管理修改"><span class="nav-text">管理修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#撤销修改"><span class="nav-text">撤销修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除文件"><span class="nav-text">删除文件</span></a></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><div class="copyright">&copy; <span itemprop="copyrightYear">2018</span> <span class="with-love" id="animate"><i class="fa fa-user"></i> </span><span class="author" itemprop="copyrightHolder">Evan</span></div><div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div><span class="post-meta-divider">|</span><div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a></div><span class="post-meta-divider">|</span><div class="hosted-by">Hosted by <a target="_blank" rel="external nofollow" href="https://coding.net/pages">Coding Pages</a></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" color="40,40,40" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script><script type="text/javascript">function proceedsearch(){$("body").append('<div class="search-popup-overlay local-search-pop-overlay"></div>').css("overflow","hidden"),$(".search-popup-overlay").click(onPopupClose),$(".popup").toggle();var e=$("#local-search-input");e.attr("autocapitalize","none"),e.attr("autocorrect","off"),e.focus()}var isfetched=!1,isXml=!0,search_path="search.xml";0===search_path.length?search_path="search.xml":/json$/i.test(search_path)&&(isXml=!1);var path="/"+search_path,onPopupClose=function(e){$(".popup").hide(),$("#local-search-input").val(""),$(".search-result-list").remove(),$("#no-result").remove(),$(".local-search-pop-overlay").remove(),$("body").css("overflow","")},searchFunc=function(e,t,o){"use strict";$("body").append('<div class="search-popup-overlay local-search-pop-overlay"><div id="search-loading-icon"><i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i></div></div>').css("overflow","hidden"),$("#search-loading-icon").css("margin","20% auto 0 auto").css("text-align","center");var n=function(e){return String(e).replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&#x3A;/g,":").replace(/&#(\d+);/g,function(e,t){return String.fromCharCode(t)}).replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&amp;/g,"&")};$.ajax({url:e,dataType:isXml?"xml":"json",async:!0,success:function(e){isfetched=!0,$(".popup").detach().appendTo(".header-inner");var r=isXml?$("entry",e).map(function(){return{title:$("title",this).text(),content:$("content",this).text(),url:$("url",this).text()}}).get():e,a=document.getElementById(t),s=document.getElementById(o),i=function(){var e=a.value.trim().toLowerCase(),t=e.split(/[\s\-]+/);t.length>1&&t.push(e);var o=[];if(e.length>0&&r.forEach(function(r){function a(t,o,n,r){for(var a=r[r.length-1],s=a.position,i=a.word,c=[],h=0;s+i.length<=n&&0!=r.length;){i===e&&h++,c.push({position:s,length:i.length});var p=s+i.length;for(r.pop();0!=r.length&&(a=r[r.length-1],s=a.position,i=a.word,p>s);)r.pop()}return l+=h,{hits:c,start:o,end:n,searchTextCount:h}}function s(e,t){var o="",n=t.start;return t.hits.forEach(function(t){o+=e.substring(n,t.position);var r=t.position+t.length;o+='<b class="search-keyword">'+e.substring(t.position,r)+"</b>",n=r}),o+=e.substring(n,t.end)}var i=!1,c=0,l=0,h=r.title.trim(),p=h.toLowerCase(),u=r.content.trim().replace(/<[^>]+>/g,"");u=n(u);var f=u.toLowerCase(),g=decodeURIComponent(r.url),d=[],v=[];if(""!=h&&(t.forEach(function(e){function t(e,t,o){var n=e.length;if(0===n)return[];var r=0,a=[],s=[];for(o||(t=t.toLowerCase(),e=e.toLowerCase());(a=t.indexOf(e,r))>-1;)s.push({position:a,word:e}),r=a+n;return s}d=d.concat(t(e,p,!1)),v=v.concat(t(e,f,!1))}),(d.length>0||v.length>0)&&(i=!0,c=d.length+v.length)),i){[d,v].forEach(function(e){e.sort(function(e,t){return t.position!==e.position?t.position-e.position:e.word.length-t.word.length})});var C=[];0!=d.length&&C.push(a(h,0,h.length,d));for(var m=[];0!=v.length;){var $=v[v.length-1],x=$.position,w=$.word,y=x-20,T=x+80;0>y&&(y=0),T<x+w.length&&(T=x+w.length),T>u.length&&(T=u.length),m.push(a(u,y,T,v))}m.sort(function(e,t){return e.searchTextCount!==t.searchTextCount?t.searchTextCount-e.searchTextCount:e.hits.length!==t.hits.length?t.hits.length-e.hits.length:e.start-t.start});var b=parseInt("1");b>=0&&(m=m.slice(0,b));var E="";E+=0!=C.length?"<li><a href='"+g+"' class='search-result-title'>"+s(h,C[0])+"</a>":"<li><a href='"+g+"' class='search-result-title'>"+h+"</a>",m.forEach(function(e){E+="<a href='"+g+'\'><p class="search-result">'+s(u,e)+"...</p></a>"}),E+="</li>",o.push({item:E,searchTextCount:l,hitCount:c,id:o.length})}}),1===t.length&&""===t[0])s.innerHTML='<div id="no-result"><i class="fa fa-search fa-5x" /></div>';else if(0===o.length)s.innerHTML='<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>';else{o.sort(function(e,t){return e.searchTextCount!==t.searchTextCount?t.searchTextCount-e.searchTextCount:e.hitCount!==t.hitCount?t.hitCount-e.hitCount:t.id-e.id});var i='<ul class="search-result-list">';o.forEach(function(e){i+=e.item}),i+="</ul>",s.innerHTML=i}};a.addEventListener("input",i),$(".local-search-pop-overlay").remove(),$("body").css("overflow",""),proceedsearch()}})};$(".popup-trigger").click(function(e){e.stopPropagation(),isfetched===!1?searchFunc(path,"local-search-input","local-search-result"):proceedsearch()}),$(".popup-btn-close").click(onPopupClose),$(".popup").click(function(e){e.stopPropagation()}),$(document).on("keyup",function(e){var t=27===e.which&&$(".search-popup").is(":visible");t&&onPopupClose()})</script><script>function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1}))
+                .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function () {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "YejOOm1W8okOYEJPJuzhsPj9-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "YejOOm1W8okOYEJPJuzhsPj9-gzGzoHsz",
+                'X-LC-Key': "H6psM0KtpeSTJU8kdcmSQSyo",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });</script></body></html><!-- rebuild by neat -->

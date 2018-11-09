@@ -1,0 +1,216 @@
+<!-- build time:Fri Nov 09 2018 20:05:21 GMT+0800 (GMT+08:00) --><!DOCTYPE html><html class="theme-next gemini use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#222"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css"><link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png?v=6.5.0"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.5.0"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.5.0"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Gemini",version:"6.5.0",sidebar:{position:"left",display:"post",offset:12,b2t:!1,scrollpercent:!1,onmobile:!1},fancybox:!1,fastclick:!1,lazyload:!1,tabs:!0,motion:{enable:!0,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><meta name="description" content="标签管理发布一个版本时，我们通常先在版本库中打一个标签（tag），这样，就唯一确定了打标签时刻的版本。将来无论什么时候，取某个标签的版本，就是把那个打标签的时刻的历史版本取出来。所以，标签也是版本库的一个快照。Git的标签虽然是版本库的快照，但其实它就是指向某个commit的指针（跟分支很像对不对？但是分支可以移动，标签不能移动），所以，创建和删除标签都是瞬间完成的。Git有commit，为什么还"><meta name="keywords" content="Git教程"><meta property="og:type" content="article"><meta property="og:title" content="Git教程(四)"><meta property="og:url" content="https://www.zelvan.net/Git-tutorial-4.html"><meta property="og:site_name" content="薄荷柠檬的博客"><meta property="og:description" content="标签管理发布一个版本时，我们通常先在版本库中打一个标签（tag），这样，就唯一确定了打标签时刻的版本。将来无论什么时候，取某个标签的版本，就是把那个打标签的时刻的历史版本取出来。所以，标签也是版本库的一个快照。Git的标签虽然是版本库的快照，但其实它就是指向某个commit的指针（跟分支很像对不对？但是分支可以移动，标签不能移动），所以，创建和删除标签都是瞬间完成的。Git有commit，为什么还"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://www.zelvan.net/images/2018/git011.png"><meta property="og:image" content="https://www.zelvan.net/images/2018/git012.png"><meta property="og:updated_time" content="2018-11-09T09:20:51.733Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Git教程(四)"><meta name="twitter:description" content="标签管理发布一个版本时，我们通常先在版本库中打一个标签（tag），这样，就唯一确定了打标签时刻的版本。将来无论什么时候，取某个标签的版本，就是把那个打标签的时刻的历史版本取出来。所以，标签也是版本库的一个快照。Git的标签虽然是版本库的快照，但其实它就是指向某个commit的指针（跟分支很像对不对？但是分支可以移动，标签不能移动），所以，创建和删除标签都是瞬间完成的。Git有commit，为什么还"><meta name="twitter:image" content="https://www.zelvan.net/images/2018/git011.png"><link rel="alternate" href="/rss2.xml" title="薄荷柠檬的博客" type="application/atom+xml"><link rel="canonical" href="https://www.zelvan.net/Git-tutorial-4.html"><script type="text/javascript" id="page.configurations">CONFIG.page={sidebar:""}</script><title>Git教程(四) | 薄荷柠檬的博客</title><noscript><style type="text/css">.sidebar-inner,.use-motion .brand,.use-motion .collection-title,.use-motion .comments,.use-motion .menu-item,.use-motion .motion-element,.use-motion .pagination,.use-motion .post-block,.use-motion .post-body,.use-motion .post-header{opacity:initial}.use-motion .logo,.use-motion .site-subtitle,.use-motion .site-title{opacity:initial;top:initial}</style></noscript></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">薄荷柠檬的博客</span> <span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle">Evan的空中楼阁</p></div><div class="site-nav-toggle"><button aria-label="切换导航栏"><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益 404</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class="site-search"><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i> </span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"><input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="https://www.zelvan.net/Git-tutorial-4.html"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="Evan"><meta itemprop="description" content="一些平时学习笔记以及搜集到的好的文章"><meta itemprop="image" content="/images/avatar.gif"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="薄荷柠檬的博客"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Git教程(四)</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建时间：2018-11-09 17:12:46 / 修改时间：17:20:51" itemprop="dateCreated datePublished" datetime="2018-11-09T17:12:46+08:00">2018-11-09</time> </span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/软件·服务器/" itemprop="url" rel="index"><span itemprop="name">软件·服务器</span></a></span> ， <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/软件·服务器/Git教程/" itemprop="url" rel="index"><span itemprop="name">Git教程</span></a></span> </span><span id="/Git-tutorial-4.html" class="leancloud_visitors" data-flag-title="Git教程(四)"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-eye"></i> </span><span class="post-meta-item-text">热度：</span> <span class="leancloud-visitors-count"></span> <span>℃</span></span><div class="post-symbolscount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i> </span><span class="post-meta-item-text">字数统计：</span> <span title="字数统计">7.8k</span> <span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i> </span><span class="post-meta-item-text">阅读时长 &asymp;</span> <span title="阅读时长">7 分钟</span></div></div></header><div class="post-body" itemprop="articleBody"><h3 id="标签管理"><a href="#标签管理" class="headerlink" title="标签管理"></a>标签管理</h3><p>发布一个版本时，我们通常先在版本库中打一个标签（tag），这样，就唯一确定了打标签时刻的版本。将来无论什么时候，取某个标签的版本，就是把那个打标签的时刻的历史版本取出来。所以，标签也是版本库的一个快照。</p><p>Git的标签虽然是版本库的快照，但其实它就是指向某个commit的指针（跟分支很像对不对？但是分支可以移动，标签不能移动），所以，创建和删除标签都是瞬间完成的。</p><p>Git有commit，为什么还要引入tag？</p><p>“请把上周一的那个版本打包发布，commit号是6a5819e…”</p><p>“一串乱七八糟的数字不好找！”</p><p>如果换一个办法：</p><p>“请把上周一的那个版本打包发布，版本号是v1.2”</p><p>“好的，按照tag v1.2查找commit就行！”</p><p>所以，tag就是一个让人容易记住的有意义的名字，它跟某个commit绑在一起。<br><a id="more"></a></p><h4 id="创建标签"><a href="#创建标签" class="headerlink" title="创建标签"></a>创建标签</h4><p>在Git中打标签非常简单，首先，切换到需要打标签的分支上：</p><pre><code>$ git branch
+* dev
+  master
+$ git checkout master
+Switched to branch &apos;master&apos;
+</code></pre><p>然后，敲命令git tag<name>就可以打一个新标签：</name></p><pre><code>$ git tag v1.0
+</code></pre><p>可以用命令git tag查看所有标签：</p><pre><code>$ git tag
+v1.0
+</code></pre><p>默认标签是打在最新提交的commit上的。有时候，如果忘了打标签，比如，现在已经是周五了，但应该在周一打的标签没有打，怎么办？</p><p>方法是找到历史提交的commit id，然后打上就可以了：</p><pre><code>$ git log --pretty=oneline --abbrev-commit
+12a631b (HEAD -&gt; master, tag: v1.0, origin/master) merged bug fix 101
+4c805e2 fix bug 101
+e1e9c68 merge with no-ff
+f52c633 add merge
+cf810e4 conflict fixed
+5dc6824 &amp; simple
+14096d0 AND simple
+b17d20e branch test
+d46f35e remove test.txt
+b84166e add test.txt
+519219b git tracks changes
+e43a48b understand how stage works
+1094adb append GPL
+e475afc add distributed
+eaadf4e wrote a readme file
+</code></pre><p>比方说要对add merge这次提交打标签，它对应的commit id是f52c633，敲入命令：</p><pre><code>$ git tag v0.9 f52c633
+</code></pre><p>再用命令git tag查看标签：</p><pre><code>$ git tag
+v0.9
+v1.0
+</code></pre><p>注意，标签不是按时间顺序列出，而是按字母排序的。可以用git show<tagname>查看标签信息：</tagname></p><pre><code>$ git show v0.9
+commit f52c63349bc3c1593499807e5c8e972b82c8f286 (tag: v0.9)
+Author: Michael Liao &lt;askxuefeng@gmail.com&gt;
+Date:   Fri May 18 21:56:54 2018 +0800
+
+    add merge
+
+diff --git a/readme.txt b/readme.txt
+...
+</code></pre><p>可以看到，v0.9确实打在add merge这次提交上。</p><p>还可以创建带有说明的标签，用-a指定标签名，-m指定说明文字：</p><pre><code>$ git tag -a v0.1 -m &quot;version 0.1 released&quot; 1094adb
+</code></pre><p>用命令git show<tagname>可以看到说明文字：</tagname></p><pre><code>$ git show v0.1
+tag v0.1
+Tagger: Michael Liao &lt;askxuefeng@gmail.com&gt;
+Date:   Fri May 18 22:48:43 2018 +0800
+
+version 0.1 released
+
+commit 1094adb7b9b3807259d8cb349e7df1d4d6477073 (tag: v0.1)
+Author: Michael Liao &lt;askxuefeng@gmail.com&gt;
+Date:   Fri May 18 21:06:15 2018 +0800
+
+    append GPL
+
+diff --git a/readme.txt b/readme.txt
+...
+</code></pre><p>注意：标签总是和某个commit挂钩。如果这个commit既出现在master分支，又出现在dev分支，那么在这两个分支上都可以看到这个标签。</p><h4 id="操作标签"><a href="#操作标签" class="headerlink" title="操作标签"></a>操作标签</h4><p>如果标签打错了，也可以删除：</p><pre><code>$ git tag -d v0.1
+Deleted tag &apos;v0.1&apos; (was f15b0dd)
+</code></pre><p>因为创建的标签都只存储在本地，不会自动推送到远程。所以，打错的标签可以在本地安全删除。</p><p>如果要推送某个标签到远程，使用命令git push origin<tagname>：</tagname></p><pre><code>$ git push origin v1.0
+Total 0 (delta 0), reused 0 (delta 0)
+To github.com:michaelliao/learngit.git
+ * [new tag]         v1.0 -&gt; v1.0
+</code></pre><p>或者，一次性推送全部尚未推送到远程的本地标签：</p><pre><code>$ git push origin --tags
+Total 0 (delta 0), reused 0 (delta 0)
+To github.com:michaelliao/learngit.git
+ * [new tag]         v0.9 -&gt; v0.9
+</code></pre><p>如果标签已经推送到远程，要删除远程标签就麻烦一点，先从本地删除：</p><pre><code>$ git tag -d v0.9
+Deleted tag &apos;v0.9&apos; (was f52c633)
+</code></pre><p>然后，从远程删除。删除命令也是push，但是格式如下：</p><pre><code>$ git push origin :refs/tags/v0.9
+To github.com:michaelliao/learngit.git
+ - [deleted]         v0.9
+</code></pre><p>要看看是否真的从远程库删除了标签，可以登陆GitHub查看。</p><h3 id="自定义Git"><a href="#自定义Git" class="headerlink" title="自定义Git"></a>自定义Git</h3><p>在安装Git一节中，我们已经配置了user.name和user.email，实际上，Git还有很多可配置项。</p><p>比如，让Git显示颜色，会让命令输出看起来更醒目：</p><pre><code>$ git config --global color.ui true
+</code></pre><p>这样，Git会适当地显示不同的颜色，比如git status命令：<br><img src="/images/2018/git011.png" alt=""><br>文件名就会标上颜色。<br>我们在后面还会介绍如何更好地配置Git，以便让你的工作更高效。</p><h4 id="忽略特殊文件"><a href="#忽略特殊文件" class="headerlink" title="忽略特殊文件"></a>忽略特殊文件</h4><p>有些时候，你必须把某些文件放到Git工作目录中，但又不能提交它们，比如保存了数据库密码的配置文件啦，等等，每次git status都会显示Untracked files …，有强迫症的童鞋心里肯定不爽。</p><p>好在Git考虑到了大家的感受，这个问题解决起来也很简单，在Git工作区的根目录下创建一个特殊的.gitignore文件，然后把要忽略的文件名填进去，Git就会自动忽略这些文件。</p><p>不需要从头写.gitignore文件，GitHub已经为我们准备了各种配置文件，只需要组合一下就可以使用了。所有配置文件可以直接在线浏览：<a href="https://github.com/github/gitignore" target="_blank" rel="noopener">https://github.com/github/gitignore</a></p><p>忽略文件的原则是：</p><pre><code>忽略操作系统自动生成的文件，比如缩略图等；
+忽略编译生成的中间文件、可执行文件等，也就是如果一个文件是通过另一个文件自动生成的，那自动生成的文件就没必要放进版本库，比如Java编译产生的.class文件；
+忽略你自己的带有敏感信息的配置文件，比如存放口令的配置文件。
+</code></pre><p>举个例子：</p><p>假设你在Windows下进行Python开发，Windows会自动在有图片的目录下生成隐藏的缩略图文件，如果有自定义目录，目录下就会有Desktop.ini文件，因此你需要忽略Windows自动生成的垃圾文件：</p><pre><code># Windows:
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+</code></pre><p>然后，继续忽略Python编译产生的.pyc、.pyo、dist等文件或目录：</p><pre><code># Python:
+*.py[cod]
+*.so
+*.egg
+*.egg-info
+dist
+build
+</code></pre><p>加上你自己定义的文件，最终得到一个完整的.gitignore文件，内容如下：</p><pre><code># Windows:
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Python:
+*.py[cod]
+*.so
+*.egg
+*.egg-info
+dist
+build
+
+# My configurations:
+db.ini
+deploy_key_rsa
+</code></pre><p>最后一步就是把.gitignore也提交到Git，就完成了！当然检验.gitignore的标准是git status命令是不是说working directory clean。</p><p>使用Windows的童鞋注意了，如果你在资源管理器里新建一个.gitignore文件，它会非常弱智地提示你必须输入文件名，但是在文本编辑器里“保存”或者“另存为”就可以把文件保存为.gitignore了。</p><p>有些时候，你想添加一个文件到Git，但发现添加不了，原因是这个文件被.gitignore忽略了：</p><pre><code>$ git add App.class
+The following paths are ignored by one of your .gitignore files:
+App.class
+Use -f if you really want to add them.
+</code></pre><p>如果你确实想添加该文件，可以用-f强制添加到Git：</p><pre><code>$ git add -f App.class
+</code></pre><p>或者你发现，可能是.gitignore写得有问题，需要找出来到底哪个规则写错了，可以用git check-ignore命令检查：</p><pre><code>$ git check-ignore -v App.class
+.gitignore:3:*.class    App.class
+</code></pre><p>Git会告诉我们，.gitignore的第3行规则忽略了该文件，于是我们就可以知道应该修订哪个规则。</p><h4 id="配置别名"><a href="#配置别名" class="headerlink" title="配置别名"></a>配置别名</h4><p>有没有经常敲错命令？比如git status？status这个单词真心不好记。</p><p>如果敲git st就表示git status那就简单多了，当然这种偷懒的办法我们是极力赞成的。</p><p>我们只需要敲一行命令，告诉Git，以后st就表示status：</p><pre><code>$ git config --global alias.st status
+</code></pre><p>好了，现在敲git st看看效果。</p><p>当然还有别的命令可以简写，很多人都用co表示checkout，ci表示commit，br表示branch：</p><pre><code>$ git config --global alias.co checkout
+$ git config --global alias.ci commit
+$ git config --global alias.br branch
+</code></pre><p>以后提交就可以简写成：</p><pre><code>$ git ci -m &quot;bala bala bala...&quot;
+</code></pre><p>–global参数是全局参数，也就是这些命令在这台电脑的所有Git仓库下都有用。</p><p>在撤销修改一节中，我们知道，命令git reset HEAD file可以把暂存区的修改撤销掉（unstage），重新放回工作区。既然是一个unstage操作，就可以配置一个unstage别名：</p><pre><code>$ git config --global alias.unstage &apos;reset HEAD&apos;
+</code></pre><p>当你敲入命令：</p><pre><code>$ git unstage test.py
+</code></pre><p>实际上Git执行的是：</p><pre><code>$ git reset HEAD test.py
+</code></pre><p>配置一个git last，让其显示最后一次提交信息：</p><pre><code>$ git config --global alias.last &apos;log -1&apos;
+</code></pre><p>这样，用git last就能显示最近一次的提交：</p><pre><code>$ git last
+commit adca45d317e6d8a4b23f9811c3d7b7f0f180bfe2
+Merge: bd6ae48 291bea8
+Author: Michael Liao &lt;askxuefeng@gmail.com&gt;
+Date:   Thu Aug 22 22:49:22 2013 +0800
+
+    merge &amp; fix hello.py
+</code></pre><p>甚至还有人丧心病狂地把lg配置成了：</p><pre><code>git config --global alias.lg &quot;log --color --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&apos; --abbrev-commit&quot;
+</code></pre><p>来看看git lg的效果：<br><img src="/images/2018/git012.png" alt=""></p><p>为什么不早点告诉我？别激动，咱不是为了多记几个英文单词嘛！</p><h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><p>配置Git的时候，加上–global是针对当前用户起作用的，如果不加，那只针对当前的仓库起作用。</p><p>配置文件放哪了？每个仓库的Git配置文件都放在.git/config文件中：</p><pre><code>$ cat .git/config 
+[core]
+    repositoryformatversion = 0
+    filemode = true
+    bare = false
+    logallrefupdates = true
+    ignorecase = true
+    precomposeunicode = true
+[remote &quot;origin&quot;]
+    url = git@github.com:michaelliao/learngit.git
+    fetch = +refs/heads/*:refs/remotes/origin/*
+[branch &quot;master&quot;]
+    remote = origin
+    merge = refs/heads/master
+[alias]
+    last = log -1
+</code></pre><p>别名就在[alias]后面，要删除别名，直接把对应的行删掉即可。</p><p>而当前用户的Git配置文件放在用户主目录下的一个隐藏文件.gitconfig中：</p><pre><code>$ cat .gitconfig
+[alias]
+    co = checkout
+    ci = commit
+    br = branch
+    st = status
+[user]
+    name = Your Name
+    email = your@email.com
+</code></pre><p>配置别名也可以直接修改这个文件，如果改错了，可以删掉文件重新通过命令配置。</p><h3 id="搭建Git服务器"><a href="#搭建Git服务器" class="headerlink" title="搭建Git服务器"></a>搭建Git服务器</h3><p>在远程仓库一节中，我们讲了远程仓库实际上和本地仓库没啥不同，纯粹为了7x24小时开机并交换大家的修改。</p><p>GitHub就是一个免费托管开源代码的远程仓库。但是对于某些视源代码如生命的商业公司来说，既不想公开源代码，又舍不得给GitHub交保护费，那就只能自己搭建一台Git服务器作为私有仓库使用。</p><p>搭建Git服务器需要准备一台运行Linux的机器，强烈推荐用Ubuntu或Debian，这样，通过几条简单的apt命令就可以完成安装。</p><p>假设你已经有sudo权限的用户账号，下面，正式开始安装。</p><h4 id="第一步，安装git："><a href="#第一步，安装git：" class="headerlink" title="第一步，安装git："></a>第一步，安装git：</h4><pre><code>$ sudo apt-get install git
+</code></pre><h4 id="第二步，创建一个git用户，用来运行git服务："><a href="#第二步，创建一个git用户，用来运行git服务：" class="headerlink" title="第二步，创建一个git用户，用来运行git服务："></a>第二步，创建一个git用户，用来运行git服务：</h4><pre><code>$ sudo adduser git
+</code></pre><h4 id="第三步，创建证书登录："><a href="#第三步，创建证书登录：" class="headerlink" title="第三步，创建证书登录："></a>第三步，创建证书登录：</h4><p>收集所有需要登录的用户的公钥，就是他们自己的id_rsa.pub文件，把所有公钥导入到/home/git/.ssh/authorized_keys文件里，一行一个。</p><h4 id="第四步，初始化Git仓库："><a href="#第四步，初始化Git仓库：" class="headerlink" title="第四步，初始化Git仓库："></a>第四步，初始化Git仓库：</h4><p>先选定一个目录作为Git仓库，假定是/srv/sample.git，在/srv目录下输入命令：</p><pre><code>$ sudo git init --bare sample.git
+</code></pre><p>Git就会创建一个裸仓库，裸仓库没有工作区，因为服务器上的Git仓库纯粹是为了共享，所以不让用户直接登录到服务器上去改工作区，并且服务器上的Git仓库通常都以.git结尾。然后，把owner改为git：</p><pre><code>$ sudo chown -R git:git sample.git
+</code></pre><h4 id="第五步，禁用shell登录："><a href="#第五步，禁用shell登录：" class="headerlink" title="第五步，禁用shell登录："></a>第五步，禁用shell登录：</h4><p>出于安全考虑，第二步创建的git用户不允许登录shell，这可以通过编辑/etc/passwd文件完成。找到类似下面的一行：</p><pre><code>git:x:1001:1001:,,,:/home/git:/bin/bash
+</code></pre><p>改为：</p><pre><code>git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell
+</code></pre><p>这样，git用户可以正常通过ssh使用git，但无法登录shell，因为我们为git用户指定的git-shell每次一登录就自动退出。</p><h4 id="第六步，克隆远程仓库："><a href="#第六步，克隆远程仓库：" class="headerlink" title="第六步，克隆远程仓库："></a>第六步，克隆远程仓库：</h4><p>现在，可以通过git clone命令克隆远程仓库了，在各自的电脑上运行：</p><pre><code>$ git clone git@server:/srv/sample.git
+Cloning into &apos;sample&apos;...
+warning: You appear to have cloned an empty repository.
+</code></pre><p>剩下的推送就简单了。</p><h4 id="管理公钥"><a href="#管理公钥" class="headerlink" title="管理公钥"></a>管理公钥</h4><p>如果团队很小，把每个人的公钥收集起来放到服务器的/home/git/.ssh/authorized_keys文件里就是可行的。如果团队有几百号人，就没法这么玩了，这时，可以用Gitosis来管理公钥。</p><p>这里我们不介绍怎么玩Gitosis了，几百号人的团队基本都在500强了，相信找个高水平的Linux管理员问题不大。</p><h4 id="管理权限"><a href="#管理权限" class="headerlink" title="管理权限"></a>管理权限</h4><p>有很多不但视源代码如生命，而且视员工为窃贼的公司，会在版本控制系统里设置一套完善的权限控制，每个人是否有读写权限会精确到每个分支甚至每个目录下。因为Git是为Linux源代码托管而开发的，所以Git也继承了开源社区的精神，不支持权限控制。不过，因为Git支持钩子（hook），所以，可以在服务器端编写一系列脚本来控制提交等操作，达到权限控制的目的。Gitolite就是这个工具。</p><p>这里我们也不介绍Gitolite了，不要把有限的生命浪费到权限斗争中。</p><p>本文转载自廖旭峰官网<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">Git教程</a></p></div><div><div><div style="text-align:center;color:#333;font-size:16px">-------------本文结束<i class="fa fa-linux"></i>感谢您的阅读-------------</div></div></div><footer class="post-footer"><div class="post-tags"><a href="/tags/Git教程/" rel="tag"><i class="fa fa-tag"></i> Git教程</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/Git-tutorial-3.html" rel="next" title="Git教程(三)"><i class="fa fa-chevron-left"></i> Git教程(三)</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"></div></div></footer></div></article></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview-wrap">站点概览</li></ul><section class="site-overview-wrap sidebar-panel"><div class="site-overview"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><p class="site-author-name" itemprop="name">Evan</p><p class="site-description motion-element" itemprop="description">一些平时学习笔记以及搜集到的好的文章</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">10</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">6</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">7</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="feed-link motion-element"><a href="/rss2.xml" rel="alternate"><i class="fa fa-rss"></i> RSS</a></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/Evan810" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a> </span><span class="links-of-author-item"><a href="mailto:zelvan@outlook.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a></span></div><div class="links-of-blogroll motion-element links-of-blogroll-blank"><div class="links-of-blogroll-title"><i class="fa fa-fw fa-link"></i> Links</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"><a href="http://theme-next.iissnan.com/" title="NEXT使用文档" target="_blank">NEXT使用文档</a></li><li class="links-of-blogroll-item"><a href="https://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a></li><li class="links-of-blogroll-item"><a href="http://www.runoob.com/" title="菜鸟教程" target="_blank">菜鸟教程</a></li></ul></div></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#标签管理"><span class="nav-text">标签管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建标签"><span class="nav-text">创建标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作标签"><span class="nav-text">操作标签</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义Git"><span class="nav-text">自定义Git</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#忽略特殊文件"><span class="nav-text">忽略特殊文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置别名"><span class="nav-text">配置别名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置文件"><span class="nav-text">配置文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建Git服务器"><span class="nav-text">搭建Git服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一步，安装git："><span class="nav-text">第一步，安装git：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二步，创建一个git用户，用来运行git服务："><span class="nav-text">第二步，创建一个git用户，用来运行git服务：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三步，创建证书登录："><span class="nav-text">第三步，创建证书登录：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第四步，初始化Git仓库："><span class="nav-text">第四步，初始化Git仓库：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第五步，禁用shell登录："><span class="nav-text">第五步，禁用shell登录：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第六步，克隆远程仓库："><span class="nav-text">第六步，克隆远程仓库：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#管理公钥"><span class="nav-text">管理公钥</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#管理权限"><span class="nav-text">管理权限</span></a></li></ol></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><div class="copyright">&copy; <span itemprop="copyrightYear">2018</span> <span class="with-love" id="animate"><i class="fa fa-user"></i> </span><span class="author" itemprop="copyrightHolder">Evan</span></div><div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div><span class="post-meta-divider">|</span><div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a></div><span class="post-meta-divider">|</span><div class="hosted-by">Hosted by <a target="_blank" rel="external nofollow" href="https://coding.net/pages">Coding Pages</a></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" color="40,40,40" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script><script type="text/javascript">function proceedsearch(){$("body").append('<div class="search-popup-overlay local-search-pop-overlay"></div>').css("overflow","hidden"),$(".search-popup-overlay").click(onPopupClose),$(".popup").toggle();var e=$("#local-search-input");e.attr("autocapitalize","none"),e.attr("autocorrect","off"),e.focus()}var isfetched=!1,isXml=!0,search_path="search.xml";0===search_path.length?search_path="search.xml":/json$/i.test(search_path)&&(isXml=!1);var path="/"+search_path,onPopupClose=function(e){$(".popup").hide(),$("#local-search-input").val(""),$(".search-result-list").remove(),$("#no-result").remove(),$(".local-search-pop-overlay").remove(),$("body").css("overflow","")},searchFunc=function(e,t,o){"use strict";$("body").append('<div class="search-popup-overlay local-search-pop-overlay"><div id="search-loading-icon"><i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i></div></div>').css("overflow","hidden"),$("#search-loading-icon").css("margin","20% auto 0 auto").css("text-align","center");var n=function(e){return String(e).replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&#x3A;/g,":").replace(/&#(\d+);/g,function(e,t){return String.fromCharCode(t)}).replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&amp;/g,"&")};$.ajax({url:e,dataType:isXml?"xml":"json",async:!0,success:function(e){isfetched=!0,$(".popup").detach().appendTo(".header-inner");var r=isXml?$("entry",e).map(function(){return{title:$("title",this).text(),content:$("content",this).text(),url:$("url",this).text()}}).get():e,a=document.getElementById(t),s=document.getElementById(o),i=function(){var e=a.value.trim().toLowerCase(),t=e.split(/[\s\-]+/);t.length>1&&t.push(e);var o=[];if(e.length>0&&r.forEach(function(r){function a(t,o,n,r){for(var a=r[r.length-1],s=a.position,i=a.word,c=[],h=0;s+i.length<=n&&0!=r.length;){i===e&&h++,c.push({position:s,length:i.length});var p=s+i.length;for(r.pop();0!=r.length&&(a=r[r.length-1],s=a.position,i=a.word,p>s);)r.pop()}return l+=h,{hits:c,start:o,end:n,searchTextCount:h}}function s(e,t){var o="",n=t.start;return t.hits.forEach(function(t){o+=e.substring(n,t.position);var r=t.position+t.length;o+='<b class="search-keyword">'+e.substring(t.position,r)+"</b>",n=r}),o+=e.substring(n,t.end)}var i=!1,c=0,l=0,h=r.title.trim(),p=h.toLowerCase(),u=r.content.trim().replace(/<[^>]+>/g,"");u=n(u);var f=u.toLowerCase(),g=decodeURIComponent(r.url),d=[],v=[];if(""!=h&&(t.forEach(function(e){function t(e,t,o){var n=e.length;if(0===n)return[];var r=0,a=[],s=[];for(o||(t=t.toLowerCase(),e=e.toLowerCase());(a=t.indexOf(e,r))>-1;)s.push({position:a,word:e}),r=a+n;return s}d=d.concat(t(e,p,!1)),v=v.concat(t(e,f,!1))}),(d.length>0||v.length>0)&&(i=!0,c=d.length+v.length)),i){[d,v].forEach(function(e){e.sort(function(e,t){return t.position!==e.position?t.position-e.position:e.word.length-t.word.length})});var C=[];0!=d.length&&C.push(a(h,0,h.length,d));for(var m=[];0!=v.length;){var $=v[v.length-1],x=$.position,w=$.word,y=x-20,T=x+80;0>y&&(y=0),T<x+w.length&&(T=x+w.length),T>u.length&&(T=u.length),m.push(a(u,y,T,v))}m.sort(function(e,t){return e.searchTextCount!==t.searchTextCount?t.searchTextCount-e.searchTextCount:e.hits.length!==t.hits.length?t.hits.length-e.hits.length:e.start-t.start});var b=parseInt("1");b>=0&&(m=m.slice(0,b));var E="";E+=0!=C.length?"<li><a href='"+g+"' class='search-result-title'>"+s(h,C[0])+"</a>":"<li><a href='"+g+"' class='search-result-title'>"+h+"</a>",m.forEach(function(e){E+="<a href='"+g+'\'><p class="search-result">'+s(u,e)+"...</p></a>"}),E+="</li>",o.push({item:E,searchTextCount:l,hitCount:c,id:o.length})}}),1===t.length&&""===t[0])s.innerHTML='<div id="no-result"><i class="fa fa-search fa-5x" /></div>';else if(0===o.length)s.innerHTML='<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>';else{o.sort(function(e,t){return e.searchTextCount!==t.searchTextCount?t.searchTextCount-e.searchTextCount:e.hitCount!==t.hitCount?t.hitCount-e.hitCount:t.id-e.id});var i='<ul class="search-result-list">';o.forEach(function(e){i+=e.item}),i+="</ul>",s.innerHTML=i}};a.addEventListener("input",i),$(".local-search-pop-overlay").remove(),$("body").css("overflow",""),proceedsearch()}})};$(".popup-trigger").click(function(e){e.stopPropagation(),isfetched===!1?searchFunc(path,"local-search-input","local-search-result"):proceedsearch()}),$(".popup-btn-close").click(onPopupClose),$(".popup").click(function(e){e.stopPropagation()}),$(document).on("keyup",function(e){var t=27===e.which&&$(".search-popup").is(":visible");t&&onPopupClose()})</script><script>function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1}))
+                .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function () {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "YejOOm1W8okOYEJPJuzhsPj9-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "YejOOm1W8okOYEJPJuzhsPj9-gzGzoHsz",
+                'X-LC-Key': "H6psM0KtpeSTJU8kdcmSQSyo",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });</script></body></html><!-- rebuild by neat -->

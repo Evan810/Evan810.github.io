@@ -1,0 +1,165 @@
+<!-- build time:Fri Nov 09 2018 20:05:21 GMT+0800 (GMT+08:00) --><!DOCTYPE html><html class="theme-next gemini use-motion" lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#222"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css"><link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png?v=6.5.0"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=6.5.0"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=6.5.0"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Gemini",version:"6.5.0",sidebar:{position:"left",display:"post",offset:12,b2t:!1,scrollpercent:!1,onmobile:!1},fancybox:!1,fastclick:!1,lazyload:!1,tabs:!0,motion:{enable:!0,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><meta name="description" content="经过一番不懈的努力，我们终于按照Hexo免费搭建一个属于自己的博客搭建好了一个属于自己的博客，并且还安装了一个Next主题，但是我们的博客一开始还是很简陋的，我们需要把她装修一下。在 Hexo 中有两份主要的配置文件，其名称都是 _config.yml。 其中，一份位于站点根目录下，主要包含 Hexo 本身的配置；另一份位于主题目录下，这份配置由主题作者提供，主要用于配置主题相关的选项。 为了描述"><meta name="keywords" content="Next"><meta property="og:type" content="article"><meta property="og:title" content="Hexo的Next主题详细配置"><meta property="og:url" content="https://www.zelvan.net/Hexo's-Next-theme-detailed-configuration.html"><meta property="og:site_name" content="薄荷柠檬的博客"><meta property="og:description" content="经过一番不懈的努力，我们终于按照Hexo免费搭建一个属于自己的博客搭建好了一个属于自己的博客，并且还安装了一个Next主题，但是我们的博客一开始还是很简陋的，我们需要把她装修一下。在 Hexo 中有两份主要的配置文件，其名称都是 _config.yml。 其中，一份位于站点根目录下，主要包含 Hexo 本身的配置；另一份位于主题目录下，这份配置由主题作者提供，主要用于配置主题相关的选项。 为了描述"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2018-11-03T05:24:11.818Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Hexo的Next主题详细配置"><meta name="twitter:description" content="经过一番不懈的努力，我们终于按照Hexo免费搭建一个属于自己的博客搭建好了一个属于自己的博客，并且还安装了一个Next主题，但是我们的博客一开始还是很简陋的，我们需要把她装修一下。在 Hexo 中有两份主要的配置文件，其名称都是 _config.yml。 其中，一份位于站点根目录下，主要包含 Hexo 本身的配置；另一份位于主题目录下，这份配置由主题作者提供，主要用于配置主题相关的选项。 为了描述"><link rel="alternate" href="/rss2.xml" title="薄荷柠檬的博客" type="application/atom+xml"><link rel="canonical" href="https://www.zelvan.net/Hexo's-Next-theme-detailed-configuration.html"><script type="text/javascript" id="page.configurations">CONFIG.page={sidebar:""}</script><title>Hexo的Next主题详细配置 | 薄荷柠檬的博客</title><noscript><style type="text/css">.sidebar-inner,.use-motion .brand,.use-motion .collection-title,.use-motion .comments,.use-motion .menu-item,.use-motion .motion-element,.use-motion .pagination,.use-motion .post-block,.use-motion .post-body,.use-motion .post-header{opacity:initial}.use-motion .logo,.use-motion .site-subtitle,.use-motion .site-title{opacity:initial;top:initial}</style></noscript></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">薄荷柠檬的博客</span> <span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle">Evan的空中楼阁</p></div><div class="site-nav-toggle"><button aria-label="切换导航栏"><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益 404</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class="site-search"><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i> </span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"><input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="https://www.zelvan.net/Hexo's-Next-theme-detailed-configuration.html"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="Evan"><meta itemprop="description" content="一些平时学习笔记以及搜集到的好的文章"><meta itemprop="image" content="/images/avatar.gif"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="薄荷柠檬的博客"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Hexo的Next主题详细配置</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建时间：2018-11-02 17:44:46" itemprop="dateCreated datePublished" datetime="2018-11-02T17:44:46+08:00">2018-11-02</time> <span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i> </span><span class="post-meta-item-text">更新于</span> <time title="修改时间：2018-11-03 13:24:11" itemprop="dateModified" datetime="2018-11-03T13:24:11+08:00">2018-11-03</time> </span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a></span> </span><span id="/Hexo's-Next-theme-detailed-configuration.html" class="leancloud_visitors" data-flag-title="Hexo的Next主题详细配置"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-eye"></i> </span><span class="post-meta-item-text">热度：</span> <span class="leancloud-visitors-count"></span> <span>℃</span></span><div class="post-symbolscount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i> </span><span class="post-meta-item-text">字数统计：</span> <span title="字数统计">5.6k</span> <span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i> </span><span class="post-meta-item-text">阅读时长 &asymp;</span> <span title="阅读时长">5 分钟</span></div></div></header><div class="post-body" itemprop="articleBody"><p>经过一番不懈的努力，我们终于按照Hexo免费搭建一个属于自己的博客搭建好了一个属于自己的博客，并且还安装了一个Next主题，但是我们的博客一开始还是很简陋的，我们需要把她装修一下。</p><pre><code>在 Hexo 中有两份主要的配置文件，其名称都是 _config.yml。 其中，一份位于站点根目录下，主要包含 Hexo 本身的配置；另一份位于主题目录下，这份配置由主题作者提供，主要用于配置主题相关的选项。
+为了描述方便，在以下说明中，将前者称为站点配置文件， 后者称为主题配置文件。
+以下所有终端执行的命令都在你的Hexo根目录下
+</code></pre><a id="more"></a><h2 id="1、基本信息配置"><a href="#1、基本信息配置" class="headerlink" title="1、基本信息配置"></a>1、基本信息配置</h2><pre><code>基本信息包括：博客标题、作者、描述、语言等等。
+</code></pre><p>打开 站点配置文件 ，找到Site模块</p><pre><code>title: 标题
+subtitle: 副标题
+description: 描述
+author: 作者
+language: 语言（简体中文是zh-Hans）
+timezone: 网站时区（Hexo 默认使用您电脑的时区，不用写）
+</code></pre><p>关于 站点配置文件 中的其他配置可参考站点配置</p><h2 id="2、菜单设置"><a href="#2、菜单设置" class="headerlink" title="2、菜单设置"></a>2、菜单设置</h2><pre><code>菜单包括：首页、归档、分类、标签、关于等等
+</code></pre><p>我们刚开始默认的菜单只有首页和归档两个，不能够满足我们的要求，所以需要添加菜单，打开 主题配置文件 找到Menu Settings</p><pre><code>menu:
+  home: / || home                          //首页
+  archives: /archives/ || archive          //归档
+  categories: /categories/ || th           //分类
+  tags: /tags/ || tags                     //标签
+  about: /about/ || user                   //关于
+  #schedule: /schedule/ || calendar        //日程表
+  #sitemap: /sitemap.xml || sitemap        //站点地图
+  #commonweal: /404/ || heartbeat          //公益404
+</code></pre><p>看看你需要哪个菜单就把哪个取消注释打开就行了；</p><p>关于后面的格式，以archives: /archives/ || archive为例：<br>|| 之前的/archives/表示标题“归档”，关于标题的格式可以去themes/next/languages/zh-Hans.yml中参考或修改<br>||之后的archive表示图标，可以去Font Awesome中查看或修改，Next主题所有的图标都来自Font Awesome</p><p>。</p><h2 id="3、Next主题样式设置"><a href="#3、Next主题样式设置" class="headerlink" title="3、Next主题样式设置"></a>3、Next主题样式设置</h2><p>我们百里挑一选择了Next主题，不过Next主题还有4种风格供我们选择，打开 主题配置文件 找到Scheme Settings</p><pre><code># Schemes
+# scheme: Muse
+# scheme: Mist
+# scheme: Pisces
+scheme: Gemini
+</code></pre><p>4种风格大同小异，本人用的是Gemini风格，你们可以选择自己喜欢的风格。</p><h2 id="4、侧栏设置"><a href="#4、侧栏设置" class="headerlink" title="4、侧栏设置"></a>4、侧栏设置</h2><pre><code>侧栏设置包括：侧栏位置、侧栏显示与否、文章间距、返回顶部按钮等等
+</code></pre><p>打开 主题配置文件 找到sidebar字段</p><pre><code>sidebar:
+# Sidebar Position - 侧栏位置（只对Pisces | Gemini两种风格有效）
+  position: left        //靠左放置
+  #position: right      //靠右放置
+
+# Sidebar Display - 侧栏显示时机（只对Muse | Mist两种风格有效）
+  #display: post        //默认行为，在文章页面（拥有目录列表）时显示
+  display: always       //在所有页面中都显示
+  #display: hide        //在所有页面中都隐藏（可以手动展开）
+  #display: remove      //完全移除
+
+  offset: 12            //文章间距（只对Pisces | Gemini两种风格有效）
+
+  b2t: false            //返回顶部按钮（只对Pisces | Gemini两种风格有效）
+
+  scrollpercent: true   //返回顶部按钮的百分比
+</code></pre><h2 id="5、头像设置"><a href="#5、头像设置" class="headerlink" title="5、头像设置"></a>5、头像设置</h2><p>打开 主题配置文件 找到Sidebar Avatar字段</p><pre><code># Sidebar Avatar
+avatar: /images/header.jpg
+</code></pre><p>这是头像的路径，只需把你的头像命名为header.jpg（随便命名）放入themes/next/source/images中，将avatar的路径名改成你的头像名就OK啦！</p><h2 id="6、设置RSS"><a href="#6、设置RSS" class="headerlink" title="6、设置RSS"></a>6、设置RSS</h2><p>1、先安装 hexo-generator-feed 插件</p><pre><code>$ npm install hexo-generator-feed --save
+</code></pre><p>2、打开 站点配置文件 找到Extensions在下面添加</p><pre><code># RSS订阅
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: &apos; &apos;
+</code></pre><p>3、打开 主题配置文件 找到rss，设置为</p><pre><code>rss: /atom.xml
+</code></pre><h2 id="7、添加分类模块"><a href="#7、添加分类模块" class="headerlink" title="7、添加分类模块"></a>7、添加分类模块</h2><p>1、新建一个分类页面</p><pre><code>$ hexo new page categories
+</code></pre><p>2、你会发现你的source文件夹下有了categorcies/index.md，打开index.md文件将title设置为title: 分类<br>3、打开 主题配置文件 找到menu，将categorcies取消注释<br>4、把文章归入分类只需在文章的顶部标题下方添加categories字段，即可自动创建分类名并加入对应的分类中<br>举个栗子：</p><pre><code>title: 分类测试文章标题
+categories: 分类名
+</code></pre><h2 id="8、添加标签模块"><a href="#8、添加标签模块" class="headerlink" title="8、添加标签模块"></a>8、添加标签模块</h2><p>1、新建一个标签页面</p><pre><code>$ hexo new page tags
+</code></pre><p>2、你会发现你的source文件夹下有了tags/index.md，打开index.md文件将title设置为title: 标签<br>3、打开 主题配置文件 找到menu，将tags取消注释<br>4、把文章添加标签只需在文章的顶部标题下方添加tags字段，即可自动创建标签名并归入对应的标签中<br>举个栗子：</p><p>title: 标签测试文章标题</p><pre><code>tags: 
+  - 标签1
+  - 标签2
+  ...
+</code></pre><h2 id="9、添加关于模块"><a href="#9、添加关于模块" class="headerlink" title="9、添加关于模块"></a>9、添加关于模块</h2><p>1、新建一个关于页面</p><pre><code>$ hexo new page about
+</code></pre><p>2、你会发现你的source文件夹下有了about/index.md，打开index.md文件即可编辑关于你的信息，可以随便编辑。<br>3、打开 主题配置文件 找到menu，将about取消注释</p><h2 id="10、添加搜索功能"><a href="#10、添加搜索功能" class="headerlink" title="10、添加搜索功能"></a>10、添加搜索功能</h2><p>1、安装 hexo-generator-searchdb 插件</p><pre><code>$ npm install hexo-generator-searchdb --save
+</code></pre><p>2、打开 站点配置文件 找到Extensions在下面添加</p><pre><code>#搜索
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
+</code></pre><p>3、打开 主题配置文件 找到Local search，将enable设置为true</p><h2 id="11、添加阅读全文按钮"><a href="#11、添加阅读全文按钮" class="headerlink" title="11、添加阅读全文按钮"></a>11、添加阅读全文按钮</h2><p>因为在你的博客主页会有多篇文章，如果你想让你的文章只显示一部分，多余的可以点击阅读全文来查看，那么你需要在你的文章中添加</p><pre><code>&lt;!--more--&gt;
+</code></pre><p>其后面的部分就不会显示了，只能点击阅读全文才能看</p><h2 id="12、修改文章内链接文本样式"><a href="#12、修改文章内链接文本样式" class="headerlink" title="12、修改文章内链接文本样式"></a>12、修改文章内链接文本样式</h2><p>效果图</p><p>打开文件 themes/next/source/css/_common/components/post/post.styl，在末尾添加</p><pre><code>.post-body p a {
+  color: #0593d3;
+  border-bottom: none;
+  border-bottom: 1px solid #0593d3;
+  &amp;:hover {
+    color: #fc6423;
+    border-bottom: none;
+    border-bottom: 1px solid #fc6423;
+  }
+}
+</code></pre><p>其中选择 .post-body 是为了不影响标题，选择 p 是为了不影响首页“阅读全文”的显示样式,颜色可以自己定义。</p><h2 id="13、设置网站缩略图标"><a href="#13、设置网站缩略图标" class="headerlink" title="13、设置网站缩略图标"></a>13、设置网站缩略图标</h2><pre><code>从网上看了很多设置方法都是说把favicon.ico放到站点目录的source目录下就可以了，可是我试了好多遍，并不行。
+</code></pre><p>我的设置方法是这样的：把你的图片（png或jpg格式，不是favicon.ico）放在themes/next/source/images里，然后打开 主题配置文件 找到favicon，将small、medium、apple_touch_icon三个字段的值都设置成/images/图片名.jpg就可以了，其他字段都注释掉。</p><h2 id="14、设置文章字体的颜色、大小"><a href="#14、设置文章字体的颜色、大小" class="headerlink" title="14、设置文章字体的颜色、大小"></a>14、设置文章字体的颜色、大小</h2><p>如果想设置某一句的颜色或大小，只需用html语法写出来就行了</p><pre><code>&lt;font color=&quot;#FF0000&quot;&gt; 我可以设置这一句的颜色哈哈 &lt;/font&gt; 
+&lt;font size=6&gt; 我还可以设置这一句的大小嘻嘻 &lt;/font&gt; 
+&lt;font size=5 color=&quot;#FF0000&quot;&gt; 我甚至可以设置这一句的颜色和大小呵呵&lt;/font&gt; 
+</code></pre><p>接下来就是见证奇迹的时刻</p><font color="#FF0000">我可以设置这一句的颜色哈哈</font><br><font size="6">我还可以设置这一句的大小嘻嘻</font><br><font size="5" color="#FF0000">我甚至可以设置这一句的颜色和大小呵呵</font><h2 id="15、设置文字居中"><a href="#15、设置文字居中" class="headerlink" title="15、设置文字居中"></a>15、设置文字居中</h2><p>设置方法：</p><pre><code>&lt;center&gt;这一行需要居中&lt;/center&gt;
+</code></pre><p>注意：简书中此方法无效</p><h2 id="16、添加评论系统"><a href="#16、添加评论系统" class="headerlink" title="16、添加评论系统"></a>16、添加评论系统</h2><pre><code>目前国内比较有名的多说、网易云跟帖评论系统都已停止服务了，国外的Disqus评论系统还得需要翻墙，所以不推荐使用，剩下的还有搜狐畅言、友言、来必力等。
+本来想使用畅言的，结果注册完之后还得要求备案，我只想说F开头的那个单词，果断放弃。
+后来选择了友言
+</code></pre><p>1、进入友言官网注册、登录步骤我就不介绍了<br>2、登录完成之后，点击获取代码，你会发现出来了一段代码，里面有你的uid=1234567<br>3、打开 主题配置文件 找到youyan_uid将值设置为上面的uid就可以了</p><h2 id="17、添加站点访问计数"><a href="#17、添加站点访问计数" class="headerlink" title="17、添加站点访问计数"></a>17、添加站点访问计数</h2><p>站点访问计数有名的就是不蒜子，使用起来非常方便<br>1、安装脚本<br>打开 themes/next/layout/_partial/footer.swig，将下面这段代码添加到里面</p><pre><code>&lt;div&gt;
+&lt;script async src=&quot;https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js&quot;&gt;&lt;/script&gt;
+&lt;span id=&quot;busuanzi_container_site_pv&quot; style=&apos;display:none&apos;&gt;
+    本站总访问量 &lt;span id=&quot;busuanzi_value_site_pv&quot;&gt;&lt;/span&gt; 次
+    &lt;span class=&quot;post-meta-divider&quot;&gt;|&lt;/span&gt;
+&lt;/span&gt;
+&lt;span id=&quot;busuanzi_container_site_uv&quot; style=&apos;display:none&apos;&gt;
+    有&lt;span id=&quot;busuanzi_value_site_uv&quot;&gt;&lt;/span&gt;人看过我的博客啦
+&lt;/span&gt;
+&lt;/div&gt;
+</code></pre><p>添加的位置如下图，可自行根据个人喜好更换位置</p><p>2、以上只是显示站点的访问次数，如果想显示每篇文章的访问次数，打开 themes/next/layout/_macro/post.swig，在第一行增加is_pv字段</p><pre><code>{% macro render(post, is_index, is_pv, post_extra_class) %}
+</code></pre><p>然后将这段代码插入到里面</p><pre><code>{% if is_pv %}
+      <span class="post-meta-divider">|</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读
+    {% endif %}
+</code></pre><p>插入的位置</p><p>然后再打开 themes/next/layout/post.swig，这个文件是文章的模板，给render方法传入参数（对应刚才添加的is_pv字段）</p><p>最后再打开 themes/next/layout/index.swig，这个文件是首页的模板，给render方法传入参数（对应刚才添加的is_pv字段）</p><p>OK！设置完毕。</p><h2 id="18、去掉文章目录标题的自动编号"><a href="#18、去掉文章目录标题的自动编号" class="headerlink" title="18、去掉文章目录标题的自动编号"></a>18、去掉文章目录标题的自动编号</h2><p>我们自己写文章的时候一般都会自己带上标题编号，但是默认的主题会给我们带上编号，很是别扭，如何去掉呢？<br>打开主题配置文件，找到</p><pre><code>将number改为false即可
+</code></pre><h2 id="更多"><a href="#更多" class="headerlink" title="更多"></a>更多</h2><p>1、还有其他更多的主题配置，请查看主题配置<br>2、还有其他更多的插件，请查看Hexo插件</p></div><div><div><div style="text-align:center;color:#333;font-size:16px">-------------本文结束<i class="fa fa-linux"></i>感谢您的阅读-------------</div></div></div><footer class="post-footer"><div class="post-tags"><a href="/tags/Next/" rel="tag"><i class="fa fa-tag"></i> Next</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/Configure-after-installing-Centos.html" rel="next" title="最小化安装Centos 7.5后配置"><i class="fa fa-chevron-left"></i> 最小化安装Centos 7.5后配置</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/Modify-ssh-port-and-limit-root-remote-login.html" rel="prev" title="Centos 7 下修改ssh端口和限制root远程登录">Centos 7 下修改ssh端口和限制root远程登录 <i class="fa fa-chevron-right"></i></a></div></div></footer></div></article></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview-wrap">站点概览</li></ul><section class="site-overview-wrap sidebar-panel"><div class="site-overview"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><p class="site-author-name" itemprop="name">Evan</p><p class="site-description motion-element" itemprop="description">一些平时学习笔记以及搜集到的好的文章</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">10</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">6</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">7</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="feed-link motion-element"><a href="/rss2.xml" rel="alternate"><i class="fa fa-rss"></i> RSS</a></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/Evan810" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a> </span><span class="links-of-author-item"><a href="mailto:zelvan@outlook.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a></span></div><div class="links-of-blogroll motion-element links-of-blogroll-blank"><div class="links-of-blogroll-title"><i class="fa fa-fw fa-link"></i> Links</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"><a href="http://theme-next.iissnan.com/" title="NEXT使用文档" target="_blank">NEXT使用文档</a></li><li class="links-of-blogroll-item"><a href="https://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a></li><li class="links-of-blogroll-item"><a href="http://www.runoob.com/" title="菜鸟教程" target="_blank">菜鸟教程</a></li></ul></div></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、基本信息配置"><span class="nav-text">1、基本信息配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、菜单设置"><span class="nav-text">2、菜单设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、Next主题样式设置"><span class="nav-text">3、Next主题样式设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、侧栏设置"><span class="nav-text">4、侧栏设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、头像设置"><span class="nav-text">5、头像设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、设置RSS"><span class="nav-text">6、设置RSS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、添加分类模块"><span class="nav-text">7、添加分类模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8、添加标签模块"><span class="nav-text">8、添加标签模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9、添加关于模块"><span class="nav-text">9、添加关于模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10、添加搜索功能"><span class="nav-text">10、添加搜索功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11、添加阅读全文按钮"><span class="nav-text">11、添加阅读全文按钮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12、修改文章内链接文本样式"><span class="nav-text">12、修改文章内链接文本样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13、设置网站缩略图标"><span class="nav-text">13、设置网站缩略图标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14、设置文章字体的颜色、大小"><span class="nav-text">14、设置文章字体的颜色、大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15、设置文字居中"><span class="nav-text">15、设置文字居中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16、添加评论系统"><span class="nav-text">16、添加评论系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17、添加站点访问计数"><span class="nav-text">17、添加站点访问计数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18、去掉文章目录标题的自动编号"><span class="nav-text">18、去掉文章目录标题的自动编号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多"><span class="nav-text">更多</span></a></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><div class="copyright">&copy; <span itemprop="copyrightYear">2018</span> <span class="with-love" id="animate"><i class="fa fa-user"></i> </span><span class="author" itemprop="copyrightHolder">Evan</span></div><div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div><span class="post-meta-divider">|</span><div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a></div><span class="post-meta-divider">|</span><div class="hosted-by">Hosted by <a target="_blank" rel="external nofollow" href="https://coding.net/pages">Coding Pages</a></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" color="40,40,40" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script><script type="text/javascript">function proceedsearch(){$("body").append('<div class="search-popup-overlay local-search-pop-overlay"></div>').css("overflow","hidden"),$(".search-popup-overlay").click(onPopupClose),$(".popup").toggle();var e=$("#local-search-input");e.attr("autocapitalize","none"),e.attr("autocorrect","off"),e.focus()}var isfetched=!1,isXml=!0,search_path="search.xml";0===search_path.length?search_path="search.xml":/json$/i.test(search_path)&&(isXml=!1);var path="/"+search_path,onPopupClose=function(e){$(".popup").hide(),$("#local-search-input").val(""),$(".search-result-list").remove(),$("#no-result").remove(),$(".local-search-pop-overlay").remove(),$("body").css("overflow","")},searchFunc=function(e,t,o){"use strict";$("body").append('<div class="search-popup-overlay local-search-pop-overlay"><div id="search-loading-icon"><i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i></div></div>').css("overflow","hidden"),$("#search-loading-icon").css("margin","20% auto 0 auto").css("text-align","center");var n=function(e){return String(e).replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&#x3A;/g,":").replace(/&#(\d+);/g,function(e,t){return String.fromCharCode(t)}).replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&amp;/g,"&")};$.ajax({url:e,dataType:isXml?"xml":"json",async:!0,success:function(e){isfetched=!0,$(".popup").detach().appendTo(".header-inner");var r=isXml?$("entry",e).map(function(){return{title:$("title",this).text(),content:$("content",this).text(),url:$("url",this).text()}}).get():e,a=document.getElementById(t),s=document.getElementById(o),i=function(){var e=a.value.trim().toLowerCase(),t=e.split(/[\s\-]+/);t.length>1&&t.push(e);var o=[];if(e.length>0&&r.forEach(function(r){function a(t,o,n,r){for(var a=r[r.length-1],s=a.position,i=a.word,c=[],h=0;s+i.length<=n&&0!=r.length;){i===e&&h++,c.push({position:s,length:i.length});var p=s+i.length;for(r.pop();0!=r.length&&(a=r[r.length-1],s=a.position,i=a.word,p>s);)r.pop()}return l+=h,{hits:c,start:o,end:n,searchTextCount:h}}function s(e,t){var o="",n=t.start;return t.hits.forEach(function(t){o+=e.substring(n,t.position);var r=t.position+t.length;o+='<b class="search-keyword">'+e.substring(t.position,r)+"</b>",n=r}),o+=e.substring(n,t.end)}var i=!1,c=0,l=0,h=r.title.trim(),p=h.toLowerCase(),u=r.content.trim().replace(/<[^>]+>/g,"");u=n(u);var f=u.toLowerCase(),g=decodeURIComponent(r.url),d=[],v=[];if(""!=h&&(t.forEach(function(e){function t(e,t,o){var n=e.length;if(0===n)return[];var r=0,a=[],s=[];for(o||(t=t.toLowerCase(),e=e.toLowerCase());(a=t.indexOf(e,r))>-1;)s.push({position:a,word:e}),r=a+n;return s}d=d.concat(t(e,p,!1)),v=v.concat(t(e,f,!1))}),(d.length>0||v.length>0)&&(i=!0,c=d.length+v.length)),i){[d,v].forEach(function(e){e.sort(function(e,t){return t.position!==e.position?t.position-e.position:e.word.length-t.word.length})});var C=[];0!=d.length&&C.push(a(h,0,h.length,d));for(var m=[];0!=v.length;){var $=v[v.length-1],x=$.position,w=$.word,y=x-20,T=x+80;0>y&&(y=0),T<x+w.length&&(T=x+w.length),T>u.length&&(T=u.length),m.push(a(u,y,T,v))}m.sort(function(e,t){return e.searchTextCount!==t.searchTextCount?t.searchTextCount-e.searchTextCount:e.hits.length!==t.hits.length?t.hits.length-e.hits.length:e.start-t.start});var b=parseInt("1");b>=0&&(m=m.slice(0,b));var E="";E+=0!=C.length?"<li><a href='"+g+"' class='search-result-title'>"+s(h,C[0])+"</a>":"<li><a href='"+g+"' class='search-result-title'>"+h+"</a>",m.forEach(function(e){E+="<a href='"+g+'\'><p class="search-result">'+s(u,e)+"...</p></a>"}),E+="</li>",o.push({item:E,searchTextCount:l,hitCount:c,id:o.length})}}),1===t.length&&""===t[0])s.innerHTML='<div id="no-result"><i class="fa fa-search fa-5x" /></div>';else if(0===o.length)s.innerHTML='<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>';else{o.sort(function(e,t){return e.searchTextCount!==t.searchTextCount?t.searchTextCount-e.searchTextCount:e.hitCount!==t.hitCount?t.hitCount-e.hitCount:t.id-e.id});var i='<ul class="search-result-list">';o.forEach(function(e){i+=e.item}),i+="</ul>",s.innerHTML=i}};a.addEventListener("input",i),$(".local-search-pop-overlay").remove(),$("body").css("overflow",""),proceedsearch()}})};$(".popup-trigger").click(function(e){e.stopPropagation(),isfetched===!1?searchFunc(path,"local-search-input","local-search-result"):proceedsearch()}),$(".popup-btn-close").click(onPopupClose),$(".popup").click(function(e){e.stopPropagation()}),$(document).on("keyup",function(e){var t=27===e.which&&$(".search-popup").is(":visible");t&&onPopupClose()})</script><script>function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1}))
+                .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function () {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "YejOOm1W8okOYEJPJuzhsPj9-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "YejOOm1W8okOYEJPJuzhsPj9-gzGzoHsz",
+                'X-LC-Key': "H6psM0KtpeSTJU8kdcmSQSyo",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });</script></body></html><!-- rebuild by neat -->
